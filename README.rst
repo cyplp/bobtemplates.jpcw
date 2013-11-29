@@ -21,9 +21,7 @@ or with pip
 
 :: 
  
- pip install mr.bob
  pip install bobtemplates.jpcw
-
 
 
 templates
@@ -48,7 +46,7 @@ pkg_ns (namespace) and pkg_project (package name) are guessed from -O option
 
 ::
  
- bin/mrbob -O paulla.paste bobtemplates.jpcw:basic_namespace
+ mrbob -O paulla.paste bobtemplates.jpcw:basic_namespace
 
 return ::
  
