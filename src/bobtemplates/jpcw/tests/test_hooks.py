@@ -119,11 +119,8 @@ class render_structureTest(TestCase):
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
                       tpl_vars)
         path_lic_txt = '%s/%s' % (self.fs_tempdir, 'docs/license.txt')
-        print("----------------- license here -------------")
-        print(path_lic_txt)
-        print("----------------- license here -------------")
         self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
-                                       'docs/license.txt')))
+                                       'docs/LICENSE.txt')))
         self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
                                        'docs/LICENSE.GPL')))
         configurator = DummyConfigurator(variables=tpl_vars)
