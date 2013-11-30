@@ -8,7 +8,7 @@ Introduction
 + basic_namespace : provide a zopeskel-like (basic_namespace) template
 
 
-installation
+Installation
 ---------------
 
 ::
@@ -24,7 +24,7 @@ or with pip
  pip install bobtemplates.jpcw
 
 
-templates
+Templates
 ------------
 
 basic_namespace
