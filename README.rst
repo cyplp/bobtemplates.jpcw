@@ -67,6 +67,6 @@ bobtemplates.jpcw is continuously
 .. _travisstatus:  http://travis-ci.org/jpcw/bobtemplates.jpcw
 
 
-.. |coveralls| image:: https://coveralls.io/repos/jpcw/bobplugins.jpcw/badge.png
-.. _coveralls: https://coveralls.io/r/jpcw/bobplugins.jpcw
+.. |coveralls| image:: https://coveralls.io/repos/jpcw/bobtemplates.jpcw/badge.png
+.. _coveralls: https://coveralls.io/r/jpcw/bobtemplates.jpcw
 
