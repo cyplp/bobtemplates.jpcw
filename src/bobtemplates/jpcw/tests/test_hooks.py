@@ -80,11 +80,13 @@ class render_structureTest(TestCase):
 
     def setUp(self):
         import bobtemplates.jpcw
+        print "setup"
         self.fs_tempdir = tempfile.mkdtemp()
         base_path = os.path.dirname(bobtemplates.jpcw.__file__)
         self.fs_templates = base_path
 
     def tearDown(self):
+        print "teardown"
         shutil.rmtree(self.fs_tempdir)
 
     def call_FUT(self, template, variables, output_dir=None, verbose=True,
@@ -108,6 +110,12 @@ class render_structureTest(TestCase):
         )
 
     def test_clean_gpl(self):
+        print"clean gpl"
+        self.tearDown()
+        print"teardown called"
+        self.setUp()
+        print"setup called"
+
         from ..hooks import basic_namespace_post_render
         tpl_vars = {'pkg_license': 'BSD', 'pkg_ns': 'mytruc',
                     'pkg_keywords': 'Python', 'pkg_author_name': 'me',
