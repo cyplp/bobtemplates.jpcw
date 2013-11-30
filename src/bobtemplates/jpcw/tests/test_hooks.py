@@ -118,10 +118,10 @@ class render_structureTest(TestCase):
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
                       tpl_vars)
-#        self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
-#                                       'docs/license.txt')))
-#        self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
-#                                       'docs/LICENSE.GPL')))
+        self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
+                                       'docs/license.txt')))
+        self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
+                                       'docs/LICENSE.GPL')))
         configurator = DummyConfigurator(variables=tpl_vars)
         configurator.target_directory = self.fs_tempdir
         basic_namespace_post_render(configurator)
