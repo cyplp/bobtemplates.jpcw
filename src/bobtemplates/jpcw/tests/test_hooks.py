@@ -121,12 +121,12 @@ class render_structureTest(TestCase):
         self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
                                        'docs/LICENSE.txt')))
         self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
-                                       'docs/LICENSE.GPL')))
+                                       'docs/LICENSE.gpl')))
         configurator = DummyConfigurator(variables=tpl_vars)
         configurator.target_directory = self.fs_tempdir
         basic_namespace_post_render(configurator)
         self.assertFalse(os.path.exists('%s/%s' % (self.fs_tempdir,
-                                        'docs/LICENSE.GPL')))
+                                        'docs/LICENSE.gpl')))
 
 
 # vim:set et sts=4 ts=4 tw=80:
