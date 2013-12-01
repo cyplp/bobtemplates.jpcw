@@ -39,6 +39,10 @@ def clean_gpl(configurator):
     if configurator.variables['pkg_license'] == 'BSD':
         license = 'LICENSE.gpl'
         gpl = os.path.join(configurator.target_directory, 'docs', license)
+        print '=' * 50
+        print gpl
+        print(os.path.isfile(gpl))
+        print '=' * 50
         if os.path.isfile(gpl):
             os.remove(gpl)
 
