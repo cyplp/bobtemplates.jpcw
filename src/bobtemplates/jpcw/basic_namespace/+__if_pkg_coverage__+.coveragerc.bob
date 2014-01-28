@@ -1,2 +1,2 @@
 [run]
-source = src/{{{ pkg_ns }}}.{{{ pkg_project }}}
+source = src/{{{ pkg_ns }}}/{{{ pkg_project }}}

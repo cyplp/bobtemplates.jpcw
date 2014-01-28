@@ -10,4 +10,4 @@ nosetests:
 {{% endif %}}
 flake8:
 	@echo "==== Running Flake8 ===="
-	@flake8 src/bobtemplates *.py
+	@flake8 src/{{{ pkg_ns }}}/{{{ pkg_project }}} *.py
