@@ -50,6 +50,25 @@ setup(name='{{{ pkg_ns }}}.{{{ pkg_project }}}',
       include_package_data=True,
       zip_safe={{{ pkg_zipsafe }}},
       install_requires=install_requires,
+      extras_require={
+{{% if pkg_nose or pkg_coverage %}}
+          'test': [
+{{% if pkg_nose %}}
+              'nose',
+{{% endif %}}
+              'flake8<2.0',
+{{% endif %}}
+{{% if pkg_coverage %}}
+              'coverage<3.6dev',
+{{% endif %}}
+{{% if pkg_nose or pkg_coverage %}}
+          ],
+{{% endif %}}
+          'development': [
+              'zest.releaser',
+              'Sphinx',
+          ],
+      },
       entry_points="""
       # -*- Entry points: -*-
       """,
