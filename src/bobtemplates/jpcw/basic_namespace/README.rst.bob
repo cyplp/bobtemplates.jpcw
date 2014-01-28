@@ -37,7 +37,7 @@ Tests
 {{% if pkg_coveralls %}}
 + coverage tracked on coveralls.io |coveralls|_.
 
-.. |coveralls| image:: https://coveralls.io/repos/{{{ user }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}/badge.png
+.. |coveralls| image:: https://coveralls.io/repos/{{{ user }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}/badge.png?branch=master
 .. _coveralls: https://coveralls.io/r/{{{ user }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}
 
 {{% endif %}}
