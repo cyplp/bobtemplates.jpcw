@@ -7,6 +7,7 @@
 __docformat__ = 'restructuredtext en'
 
 
+import getpass
 import os
 from mrbob.bobexceptions import ValidationError
 from datetime import date
@@ -45,7 +46,8 @@ def clean_gpl(configurator):
 
 def basic_namespace_pre_render(configurator):
     """License stuff."""
-    other_vars = {'year': date.today().year}
+    other_vars = {'year': date.today().year,
+                  'user': getpass.getuser()}
     configurator.variables.update(other_vars)
 
 

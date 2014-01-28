@@ -116,7 +116,7 @@ class render_structureTest(TestCase):
                     'pkg_zipsafe': 'false', 'year': 2013, 'pkg_project': 'my',
                     'pkg_description': 'testing my templates',
                     'pkg_travis': 'y', 'pkg_nose': 'y', 'pkg_coverage': 'y',
-                    'pkg_coveralls': 'y'}
+                    'pkg_coveralls': 'y', 'user': 'jpcw'}
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
                       tpl_vars)
