@@ -17,8 +17,8 @@ def read_file(*pathes):
     else:
         return ''
 
-desc_files = (('README.rst',), ('docs', 'CHANGES.rst'),
-              ('docs', 'CONTRIBUTORS.rst'))
+desc_files = (('README.rst',), ('docs', 'source', 'CHANGES.rst'),
+              ('docs', 'source', 'CONTRIBUTORS.rst'))
 
 long_description = '\n\n'.join([read_file(*pathes) for pathes in desc_files])
 
@@ -67,6 +67,7 @@ setup(name='{{{ pkg_ns }}}.{{{ pkg_project }}}',
           'development': [
               'zest.releaser',
               'Sphinx',
+              'sphinxcontrib-gen_node',
           ],
       },
       entry_points="""

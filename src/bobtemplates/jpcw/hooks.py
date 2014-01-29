@@ -27,6 +27,11 @@ def basicnamespace_pre_pkg_project(configurator, question):
         question.default = names[1]
 
 
+def basicnamespace_pre_dcvs_nick(configurator, question):
+    """Guess default pkg_project from Output Directory"""
+    question.default = getpass.getuser()
+
+
 def valid_pkg_license(configurator, question, answer):
     """Check license answer."""
     licenses = ['BSD', 'GPL']
@@ -39,15 +44,15 @@ def clean_gpl(configurator):
     """Clean License if needed."""
     if configurator.variables['pkg_license'] == 'BSD':
         license = 'LICENSE.gpl'
-        gpl = os.path.join(configurator.target_directory, 'docs', license)
+        doc_fold = 'docs/source'
+        gpl = os.path.join(configurator.target_directory, doc_fold, license)
         if os.path.isfile(gpl):
             os.remove(gpl)
 
 
 def basic_namespace_pre_render(configurator):
     """License stuff."""
-    other_vars = {'year': date.today().year,
-                  'user': getpass.getuser()}
+    other_vars = {'year': date.today().year}
     configurator.variables.update(other_vars)
 
 

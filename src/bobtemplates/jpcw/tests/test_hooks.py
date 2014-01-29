@@ -6,6 +6,7 @@
 
 __docformat__ = 'restructuredtext en'
 
+import getpass
 import os
 import shutil
 import tempfile
@@ -52,6 +53,15 @@ class Basic_NamespaceTest(TestCase):
         self.assertEquals(configurator.questions[1].default, None)
         basicnamespace_pre_pkg_project(configurator, configurator.questions[1])
         self.assertEquals(configurator.questions[1].default, 'mypkg')
+
+    def test_dcvs_nick(self):
+        from ..hooks import basicnamespace_pre_dcvs_nick as pre_dcvs
+        configurator = self.call_FUT('bobtemplates.jpcw:basic_namespace',
+                                     'mynamespace.mypkg', {})
+        self.assertEquals(configurator.questions[-1].default, None)
+        pre_dcvs(configurator, configurator.questions[-1])
+        cur_user = getpass.getuser()
+        self.assertEquals(configurator.questions[-1].default, cur_user)
 
     def test_basic_namespace_pre_render(self):
         from ..hooks import basic_namespace_pre_render
@@ -116,19 +126,20 @@ class render_structureTest(TestCase):
                     'pkg_zipsafe': 'false', 'year': 2013, 'pkg_project': 'my',
                     'pkg_description': 'testing my templates',
                     'pkg_travis': 'y', 'pkg_nose': 'y', 'pkg_coverage': 'y',
-                    'pkg_coveralls': 'y', 'user': 'jpcw'}
+                    'pkg_coveralls': 'y', 'dcvs_nick': 'jpcw',
+                    'forgeurl': 'https://github.com'}
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
                       tpl_vars)
         self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
-                                       'docs/LICENSE.txt')))
+                                       'docs/source/LICENSE.txt')))
         self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
-                                       'docs/LICENSE.gpl')))
+                                       'docs/source/LICENSE.gpl')))
         configurator = DummyConfigurator(variables=tpl_vars)
         configurator.target_directory = self.fs_tempdir
         basic_namespace_post_render(configurator)
         self.assertFalse(os.path.exists('%s/%s' % (self.fs_tempdir,
-                                        'docs/LICENSE.gpl')))
+                                        'docs/source/LICENSE.gpl')))
 
 
 # vim:set et sts=4 ts=4 tw=80:

@@ -30,14 +30,14 @@ Tests
 
 + tested on Travis |travisstatus|_ 
 
-.. |travisstatus| image:: https://api.travis-ci.org/{{{ user }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}.png?branch=master
-.. _travisstatus:  http://travis-ci.org/{{{ user }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}
+.. |travisstatus| image:: https://api.travis-ci.org/{{{ dcvs_nick }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}.png?branch=master
+.. _travisstatus:  http://travis-ci.org/{{{ dcvs_nick }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}
 
 {{% endif %}}
 {{% if pkg_coveralls %}}
 + coverage tracked on coveralls.io |coveralls|_.
 
-.. |coveralls| image:: https://coveralls.io/repos/{{{ user }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}/badge.png?branch=master
-.. _coveralls: https://coveralls.io/r/{{{ user }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}
+.. |coveralls| image:: https://coveralls.io/repos/{{{ dcvs_nick }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}/badge.png?branch=master
+.. _coveralls: https://coveralls.io/r/{{{ dcvs_nick }}}/{{{ pkg_ns }}}.{{{ pkg_project }}}
 
 {{% endif %}}
