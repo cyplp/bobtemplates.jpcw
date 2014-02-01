@@ -13,16 +13,18 @@ Installation
 
 ::
  
- easy_install bobtemplates.jpcw
-
-or simply add bobtemplates.jpcw to your eggs zc.buildout section 
-
-or with pip
-
-:: 
- 
- pip install bobtemplates.jpcw
-
+  - git clone -b master https://github.com/jpcw/mr.bob.git
+  - cd mr.bob
+  - python setup.py install
+  - cd ../
+  - git clone -b master https://github.com/jpcw/bobplugins.jpcw.git
+  - cd bobplugins.jpcw
+  - python setup.py install
+  - git clone -b master https://github.com/jpcw/bobtemplates.jpcw.git
+  - cd ../bobtemplates.jpcw/
+  - python setup.py develop
+  - easy_install . bobtemplates.jpcw[test]
+  
 
 Templates
 ------------
