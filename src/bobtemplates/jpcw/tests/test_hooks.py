@@ -117,29 +117,45 @@ class render_structureTest(TestCase):
             ignored_files,
         )
 
-    def test_clean_gpl(self):
-
-        from ..hooks import basic_namespace_post_render
-        tpl_vars = {'pkg_license': 'BSD', 'pkg_ns': 'mytruc',
+    def test_render_license_bsd(self):
+        tpl_vars = {'pkg_license': 'BSD', 'gpl': 'n', 'pkg_ns': 'mytruc',
                     'pkg_keywords': 'Python', 'pkg_author_name': 'me',
                     'pkg_author_email': 'me@.tld', 'pkg_url': 'http://.tld',
                     'pkg_zipsafe': 'false', 'year': 2013, 'pkg_project': 'my',
                     'pkg_description': 'testing my templates',
                     'pkg_travis': 'y', 'pkg_nose': 'y', 'pkg_coverage': 'y',
                     'pkg_coveralls': 'y', 'dcvs_nick': 'jpcw',
-                    'forgeurl': 'https://github.com'}
+                    'forgeurl': 'https://github.com', 'pkg_sphinx': 'y',
+                    'pkg_sphinx_conrib_gen-node': 'y',
+                    'pkg_zest_releaser': 'y'}
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
                       tpl_vars)
         self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
                                        'docs/source/LICENSE.txt')))
-        self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
-                                       'docs/source/LICENSE.gpl')))
         configurator = DummyConfigurator(variables=tpl_vars)
         configurator.target_directory = self.fs_tempdir
-        basic_namespace_post_render(configurator)
         self.assertFalse(os.path.exists('%s/%s' % (self.fs_tempdir,
                                         'docs/source/LICENSE.gpl')))
 
+    def test_render_license_gpl(self):
+        tpl_vars = {'pkg_license': 'GPL', 'gpl': 'y', 'pkg_ns': 'mytruc',
+                    'pkg_keywords': 'Python', 'pkg_author_name': 'me',
+                    'pkg_author_email': 'me@.tld', 'pkg_url': 'http://.tld',
+                    'pkg_zipsafe': 'false', 'year': 2013, 'pkg_project': 'my',
+                    'pkg_description': 'testing my templates',
+                    'pkg_travis': 'y', 'pkg_nose': 'y', 'pkg_coverage': 'y',
+                    'pkg_coveralls': 'y', 'dcvs_nick': 'jpcw',
+                    'forgeurl': 'https://github.com', 'pkg_sphinx': 'y',
+                    'pkg_sphinx_conrib_gen-node': 'y',
+                    'pkg_zest_releaser': 'y'}
 
+        self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
+                      tpl_vars)
+        self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
+                                       'docs/source/LICENSE.txt')))
+        configurator = DummyConfigurator(variables=tpl_vars)
+        configurator.target_directory = self.fs_tempdir
+        self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
+                                       'docs/source/LICENSE.gpl')))
 # vim:set et sts=4 ts=4 tw=80:
