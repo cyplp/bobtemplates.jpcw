@@ -136,7 +136,8 @@ class render_structureTest(TestCase):
                     'pkg_sphinx_contrib_gen_node': 'y',
                     'pkg_zest_releaser': 'y',
                     'git_gitignore': 'f',
-                    'buildout_buildout': 'f'}
+                    'buildout_buildout': 'f',
+                    'buildout_bootstrap': 'f'}
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
                       tpl_vars)
@@ -159,7 +160,9 @@ class render_structureTest(TestCase):
                     'pkg_sphinx_contrib_gen_node': 'y',
                     'pkg_zest_releaser': 'y',
                     'git_gitignore': 'f',
-                    'buildout_buildout': 'f'}
+                    'buildout_buildout': 'f',
+                    'buildout_bootstrap': 'f'
+                    }
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
                       tpl_vars)
