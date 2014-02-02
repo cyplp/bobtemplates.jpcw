@@ -79,24 +79,19 @@ class Basic_NamespaceTest(TestCase):
 
     def test_basic_namespace_post_render(self):
 
-        from bobtemplates.jpcw.hooks import basic_namespace_post_render
+        from ..hooks import basic_namespace_post_render
 
+        dummy = DummyConfigurator(variables = {'pkg_license': 'gpl'})
+        dummy.target_directory = self.target_dir
 
-        class FakeConfigurator(object):
-            target_directory = self.target_dir
-            variables = {}
-
-
-        fc = FakeConfigurator()
-
-        fc.variables['buildout_bootstrap'] = False
-        basic_namespace_post_render(fc)
+        dummy.variables['buildout_bootstrap'] = False
+        basic_namespace_post_render(dummy)
 
         self.assertFalse(os.path.exists('%s/%s' % (self.target_dir,
                                        'bootstrap.py')))
 
-        fc.variables['buildout_bootstrap'] = True
-        basic_namespace_post_render(fc)
+        dummy.variables['buildout_bootstrap'] = True
+        basic_namespace_post_render(dummy)
 
         self.assertTrue(os.path.exists('%s/%s' % (self.target_dir,
                                                   'bootstrap.py')))
@@ -202,7 +197,7 @@ class Valid_buildout_Test(TestCase):
 
     def setUp(self):
         import bobtemplates.jpcw
-        self.fs_tempdir = tempfile.mkdtemp()
+        self.target_dir = tempfile.mkdtemp()
         base_path = os.path.dirname(bobtemplates.jpcw.__file__)
         self.fs_templates = base_path
 
@@ -212,13 +207,12 @@ class Valid_buildout_Test(TestCase):
 
 
     def test_get_bootstrap(self):
-        class FakeConfigurator(object):
-            target_directory = self.fs_tempdir
+        from ..hooks import get_bootstrap
 
+        dummy = DummyConfigurator()
+        dummy.target_directory = self.target_dir
 
-        from bobtemplates.jpcw.hooks import get_bootstrap
-
-        get_bootstrap(FakeConfigurator())
+        get_bootstrap(dummy)
 
         self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
                                        'bootstrap.py')))

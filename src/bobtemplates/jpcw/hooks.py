@@ -8,7 +8,7 @@ __docformat__ = 'restructuredtext en'
 
 try:
     import urllib.request as urllib2
-except ImportError:
+except ImportError:  # pragma: no cover
     import urllib2
 
 import getpass
@@ -57,18 +57,16 @@ def basic_namespace_pre_render(configurator):
 
 
 def basic_namespace_post_render(configurator):
-    """Nothing yet."""
+    """
+    Execute post renderer hook.
+    """
+
 
     if configurator.variables['pkg_license'].lower() == 'gpl':
         configurator.variables.update({'gpl': 'y'})
     else:
         configurator.variables.update({'gpl': 'n'})
 
-
-def basic_namespace_post_render(configurator):
-    """
-    Execute post renderer hook.
-    """
     if configurator.variables['buildout_bootstrap']:
         get_bootstrap(configurator)
 
