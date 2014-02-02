@@ -7,9 +7,9 @@
 __docformat__ = 'restructuredtext en'
 
 try:
-    import urllib.request as urllib_
+    import urllib.request as urllib_  # flake8: ignore=W801
 except ImportError:  # pragma: no cover
-    import urllib2 as urllib_
+    import urllib2 as urllib_   # flake8: ignore=W801
 
 import getpass
 import os
