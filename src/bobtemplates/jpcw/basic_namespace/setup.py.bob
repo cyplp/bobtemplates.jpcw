@@ -65,7 +65,9 @@ setup(name='{{{ pkg_ns }}}.{{{ pkg_project }}}',
           ],
 {{% endif %}}
           'development': [
+{{% if pkg_zest_releaser %}}
               'zest.releaser',
+{{% endif %}}
 {{% if pkg_sphinx %}}
               'Sphinx',
 {{% if pkg_sphinx_contrib_gen_node %}}
