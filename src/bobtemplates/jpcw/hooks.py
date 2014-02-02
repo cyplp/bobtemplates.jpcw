@@ -7,9 +7,9 @@
 __docformat__ = 'restructuredtext en'
 
 try:
-    import urllib.request as urllib2
+    import urllib.request as urllib_
 except ImportError:  # pragma: no cover
-    import urllib2
+    import urllib2 as urllib_
 
 import getpass
 import os
@@ -73,7 +73,7 @@ def get_bootstrap(configurator):
     Get the last version of bootstrap.py
     """
     url = 'http://downloads.buildout.org/2/bootstrap.py'
-    req = urllib2.urlopen(url)
+    req = urllib_.urlopen(url)
 
     with open(os.path.join(configurator.target_directory,
                            'bootstrap.py'), 'w') as bootstrap:
