@@ -77,6 +77,30 @@ class Basic_NamespaceTest(TestCase):
         basic_namespace_pre_render(configurator)
         self.assertEquals(configurator.variables['gpl'], 'y')
 
+    def test_basic_namespace_post_render(self):
+
+        from bobtemplates.jpcw.hooks import basic_namespace_post_render
+
+
+        class FakeConfigurator(object):
+            target_directory = self.target_dir
+            variables = {}
+
+
+        fc = FakeConfigurator()
+
+        fc.variables['buildout_bootstrap'] = False
+        basic_namespace_post_render(fc)
+
+        self.assertFalse(os.path.exists('%s/%s' % (self.target_dir,
+                                       'bootstrap.py')))
+
+        fc.variables['buildout_bootstrap'] = True
+        basic_namespace_post_render(fc)
+
+        self.assertTrue(os.path.exists('%s/%s' % (self.target_dir,
+                                                  'bootstrap.py')))
+
 
 class valid_pkg_licenseTest(TestCase):
 
