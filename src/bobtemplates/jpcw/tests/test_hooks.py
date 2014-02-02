@@ -66,9 +66,16 @@ class Basic_NamespaceTest(TestCase):
     def test_basic_namespace_pre_render(self):
         from ..hooks import basic_namespace_pre_render
         configurator = self.call_FUT('bobtemplates.jpcw:basic_namespace',
-                                     'mynamespace.mypkg', {})
+                                     'mynamespace.mypkg',
+                                     variables={'pkg_license': 'BSD'})
         basic_namespace_pre_render(configurator)
         self.assertEquals(configurator.variables['year'], date.today().year)
+        self.assertEquals(configurator.variables['gpl'], 'n')
+        configurator = self.call_FUT('bobtemplates.jpcw:basic_namespace',
+                                     'mynamespace.mypkg',
+                                     variables={'pkg_license': 'GPL'})
+        basic_namespace_pre_render(configurator)
+        self.assertEquals(configurator.variables['gpl'], 'y')
 
 
 class valid_pkg_licenseTest(TestCase):

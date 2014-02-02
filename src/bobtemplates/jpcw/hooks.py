@@ -37,15 +37,16 @@ def valid_pkg_license(configurator, question, answer):
     licenses = ['BSD', 'GPL']
     if answer.upper().strip() not in licenses:
         raise ValidationError("'{0}' is not in {1}".format(answer, licenses))
-    if answer.lower() == 'gpl':
-        configurator.variables.update({'gpl': 'y'})
-
     return answer
 
 
 def basic_namespace_pre_render(configurator):
     """License stuff."""
     configurator.variables.update({'year': date.today().year})
+    if configurator.variables['pkg_license'].lower() == 'gpl':
+        configurator.variables.update({'gpl': 'y'})
+    else:
+        configurator.variables.update({'gpl': 'n'})
 
 
 def basic_namespace_post_render(configurator):
