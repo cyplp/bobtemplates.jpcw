@@ -46,7 +46,6 @@ def valid_pkg_license(configurator, question, answer):
     return answer
 
 
-
 def basic_namespace_pre_render(configurator):
     """License stuff."""
     configurator.variables.update({'year': date.today().year})
@@ -68,6 +67,7 @@ def basic_namespace_post_render(configurator):
     if configurator.variables['buildout_bootstrap']:
         get_bootstrap(configurator)
 
+
 def get_bootstrap(configurator):
     """
     Get the last version of bootstrap.py
@@ -75,7 +75,8 @@ def get_bootstrap(configurator):
     url = 'http://downloads.buildout.org/2/bootstrap.py'
     req = urllib2.urlopen(url)
 
-    with open(os.path.join(configurator.target_directory, 'bootstrap.py'), 'w') as bootstrap:
+    with open(os.path.join(configurator.target_directory,
+                           'bootstrap.py'), 'w') as bootstrap:
         bootstrap.write(str(req.read()))
 
 # vim:set et sts=4 ts=4 tw=80:
