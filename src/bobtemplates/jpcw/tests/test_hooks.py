@@ -90,7 +90,10 @@ class Basic_NamespaceTest(TestCase):
         self.assertFalse(os.path.exists('%s/%s' % (self.target_dir,
                                        'bootstrap.py')))
 
+        dummy = DummyConfigurator(variables = {'pkg_license': 'bsd'})
+        dummy.target_directory = self.target_dir
         dummy.variables['buildout_bootstrap'] = True
+
         basic_namespace_post_render(dummy)
 
         self.assertTrue(os.path.exists('%s/%s' % (self.target_dir,
