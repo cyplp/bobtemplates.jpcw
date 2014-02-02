@@ -126,7 +126,7 @@ class render_structureTest(TestCase):
                     'pkg_travis': 'y', 'pkg_nose': 'y', 'pkg_coverage': 'y',
                     'pkg_coveralls': 'y', 'dcvs_nick': 'jpcw',
                     'forgeurl': 'https://github.com', 'pkg_sphinx': 'y',
-                    'pkg_sphinx_conrib_gen-node': 'y',
+                    'pkg_sphinx_contrib_gen_node': 'y',
                     'pkg_zest_releaser': 'y'}
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
@@ -147,7 +147,7 @@ class render_structureTest(TestCase):
                     'pkg_travis': 'y', 'pkg_nose': 'y', 'pkg_coverage': 'y',
                     'pkg_coveralls': 'y', 'dcvs_nick': 'jpcw',
                     'forgeurl': 'https://github.com', 'pkg_sphinx': 'y',
-                    'pkg_sphinx_conrib_gen-node': 'y',
+                    'pkg_sphinx_contrib_gen_node': 'y',
                     'pkg_zest_releaser': 'y'}
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),

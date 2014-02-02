@@ -66,8 +66,12 @@ setup(name='{{{ pkg_ns }}}.{{{ pkg_project }}}',
 {{% endif %}}
           'development': [
               'zest.releaser',
+{{% if pkg_sphinx %}}
               'Sphinx',
+{{% if pkg_sphinx_contrib_gen_node %}}
               'sphinxcontrib-gen_node',
+{{% endif %}}
+{{% endif %}}
           ],
       },
       entry_points="""

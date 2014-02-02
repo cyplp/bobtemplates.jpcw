@@ -35,12 +35,12 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
-{{% if pkg_sphinx_conrib_gen-node %}}
+{{% if pkg_sphinx_contrib_gen_node %}}
     'sphinxcontrib.gen_node',
 {{% end_if % }}
 ]
 
-{{% if pkg_sphinx_conrib_gen-node %}}
+{{% if pkg_sphinx_contrib_gen_node %}}
 # sample configuration of sphinxcontrib.gen_node
 # gen_nodes = [('done', True, True, True), ('to_valid', True, True, False), ('exo', True, True, False), ]
 {{% end_if % }}
