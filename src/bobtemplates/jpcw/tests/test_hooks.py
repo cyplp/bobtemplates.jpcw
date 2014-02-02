@@ -172,4 +172,32 @@ class render_structureTest(TestCase):
         configurator.target_directory = self.fs_tempdir
         self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
                                        'docs/source/LICENSE.gpl')))
+
+
+class Valid_buildout_Test(TestCase):
+
+    def setUp(self):
+        import bobtemplates.jpcw
+        self.fs_tempdir = tempfile.mkdtemp()
+        base_path = os.path.dirname(bobtemplates.jpcw.__file__)
+        self.fs_templates = base_path
+
+
+    def tearDown(self):
+        shutil.rmtree(self.fs_tempdir)
+
+
+    def test_get_bootstrap(self):
+        class FakeConfigurator(object):
+            target_directory = self.fs_tempdir
+
+
+        from bobtemplates.jpcw.hooks import get_bootstrap
+
+        get_bootstrap(FakeConfigurator())
+
+        self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
+                                       'bootstrap.py')))
+
+
 # vim:set et sts=4 ts=4 tw=80:

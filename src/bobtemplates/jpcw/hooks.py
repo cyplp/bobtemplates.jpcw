@@ -79,7 +79,7 @@ def get_bootstrap(configurator):
     url = 'http://downloads.buildout.org/2/bootstrap.py'
     req = urllib2.urlopen(url)
 
-    with open(os.path.join(configurator.target_directory, 'boostrap.py'), 'w') as bootstrap:
+    with open(os.path.join(configurator.target_directory, 'bootstrap.py'), 'w') as bootstrap:
         bootstrap.write(str(req.read()))
 
 # vim:set et sts=4 ts=4 tw=80:
