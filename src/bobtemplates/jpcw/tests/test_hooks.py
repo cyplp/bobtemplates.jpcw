@@ -81,17 +81,17 @@ class Basic_NamespaceTest(TestCase):
 
         from ..hooks import basic_namespace_post_render
 
-        dummy = DummyConfigurator(variables = {'pkg_license': 'gpl',
-                                               'buildout_bootstrap': False})
+        dummy = DummyConfigurator(variables={'pkg_license': 'gpl',
+                                             'buildout_bootstrap': False})
         dummy.target_directory = self.target_dir
 
         basic_namespace_post_render(dummy)
 
         self.assertFalse(os.path.exists('%s/%s' % (self.target_dir,
-                                       'bootstrap.py')))
+                                        'bootstrap.py')))
 
-        dummy = DummyConfigurator(variables = {'pkg_license': 'bsd',
-                                               'buildout_bootstrap': True})
+        dummy = DummyConfigurator(variables={'pkg_license': 'bsd',
+                                             'buildout_bootstrap': True})
         dummy.target_directory = self.target_dir
         basic_namespace_post_render(dummy)
 
@@ -203,10 +203,8 @@ class Valid_buildout_Test(TestCase):
         base_path = os.path.dirname(bobtemplates.jpcw.__file__)
         self.fs_templates = base_path
 
-
     def tearDown(self):
         shutil.rmtree(self.target_dir)
-
 
     def test_get_bootstrap(self):
         from ..hooks import get_bootstrap
