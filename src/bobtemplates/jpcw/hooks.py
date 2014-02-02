@@ -6,10 +6,7 @@
 
 __docformat__ = 'restructuredtext en'
 
-try:
-    import urllib.request as urllib_  # flake8: ignore=W801
-except ImportError:  # pragma: no cover
-    import urllib2 as urllib_   # flake8: ignore=W801
+from six.moves.urllib import request
 
 import getpass
 import os
@@ -73,7 +70,7 @@ def get_bootstrap(configurator):
     Get the last version of bootstrap.py
     """
     url = 'http://downloads.buildout.org/2/bootstrap.py'
-    req = urllib_.urlopen(url)
+    req = request.urlopen(url)
 
     with open(os.path.join(configurator.target_directory,
                            'bootstrap.py'), 'w') as bootstrap:
