@@ -6,11 +6,17 @@
 
 __docformat__ = 'restructuredtext en'
 
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
 
 import getpass
 import os
-from mrbob.bobexceptions import ValidationError
+
 from datetime import date
+
+from mrbob.bobexceptions import ValidationError
 
 
 def basicnamespace_pre_pkg_ns(configurator, question):
@@ -40,6 +46,7 @@ def valid_pkg_license(configurator, question, answer):
     return answer
 
 
+
 def basic_namespace_pre_render(configurator):
     """License stuff."""
     configurator.variables.update({'year': date.today().year})
@@ -52,5 +59,27 @@ def basic_namespace_pre_render(configurator):
 def basic_namespace_post_render(configurator):
     """Nothing yet."""
 
+    if configurator.variables['pkg_license'].lower() == 'gpl':
+        configurator.variables.update({'gpl': 'y'})
+    else:
+        configurator.variables.update({'gpl': 'n'})
+
+
+def basic_namespace_post_render(configurator):
+    """
+    Execute post renderer hook.
+    """
+    if configurator.variables['buildout_bootstrap']:
+        get_bootstrap(configurator)
+
+def get_bootstrap(configurator):
+    """
+    Get the last version of bootstrap.py
+    """
+    url = 'http://downloads.buildout.org/2/bootstrap.py'
+    req = urllib2.urlopen(url)
+
+    with open(os.path.join(configurator.target_directory, 'boostrap.py'), 'w') as bootstrap:
+        bootstrap.write(str(req.read()))
 
 # vim:set et sts=4 ts=4 tw=80:
