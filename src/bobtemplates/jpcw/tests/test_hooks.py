@@ -203,7 +203,7 @@ class Valid_buildout_Test(TestCase):
 
 
     def tearDown(self):
-        shutil.rmtree(self.fs_tempdir)
+        shutil.rmtree(self.target_dir)
 
 
     def test_get_bootstrap(self):
@@ -214,7 +214,7 @@ class Valid_buildout_Test(TestCase):
 
         get_bootstrap(dummy)
 
-        self.assertTrue(os.path.exists('%s/%s' % (self.fs_tempdir,
+        self.assertTrue(os.path.exists('%s/%s' % (self.target_dir,
                                        'bootstrap.py')))
 
 

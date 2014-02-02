@@ -60,8 +60,6 @@ def basic_namespace_post_render(configurator):
     """
     Execute post renderer hook.
     """
-
-
     if configurator.variables['pkg_license'].lower() == 'gpl':
         configurator.variables.update({'gpl': 'y'})
     else:
