@@ -135,7 +135,8 @@ class render_structureTest(TestCase):
                     'forgeurl': 'https://github.com', 'pkg_sphinx': 'y',
                     'pkg_sphinx_contrib_gen_node': 'y',
                     'pkg_zest_releaser': 'y',
-                    'git_gitignore': 'f'}
+                    'git_gitignore': 'f',
+                    'buildout_buildout': 'f'}
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
                       tpl_vars)
@@ -157,7 +158,8 @@ class render_structureTest(TestCase):
                     'forgeurl': 'https://github.com', 'pkg_sphinx': 'y',
                     'pkg_sphinx_contrib_gen_node': 'y',
                     'pkg_zest_releaser': 'y',
-                    'git_gitignore': 'f'}
+                    'git_gitignore': 'f',
+                    'buildout_buildout': 'f'}
 
         self.call_FUT(os.path.join(self.fs_templates, 'basic_namespace'),
                       tpl_vars)
