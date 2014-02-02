@@ -1,0 +1,55 @@
+[buildout]
+
+develop =
+    .
+
+parts =
+      {{{ pkg_ns }}}.{{{ pkg_project }}}
+      sphinxbuilder
+      pylint
+      test
+
+[{{{ pkg_ns }}}.{{{ pkg_project }}}]
+recipe=zc.recipe.egg
+eggs =
+    {{{ pkg_ns }}}.{{{ pkg_project }}}
+     nose
+     pep8
+     pylint
+     coverage
+{{% if pkg_zest_releaser == True %}}
+     zest.releaser
+{{% endif %}}
+     autopep8
+
+interpreter = python
+
+[test]
+recipe = collective.recipe.template
+output = ${buildout:bin-directory}/test
+mode = 755
+input = inline:
+    #!/bin/bash
+    # Coverage
+    echo;echo "{{{ pkg_ns }}}.{{{ pkg_project }}} - Integration: Test & Coverage";echo
+    ${buildout:bin-directory}/coverage run ${buildout:bin-directory}/nosetests --with-xunit {{{ pkg_ns }}}
+    ${buildout:bin-directory}/coverage xml --include='{{{ pkg_ns }}}/*py' --omit='*tests*'
+
+
+
+[sphinxbuilder]
+recipe = collective.recipe.sphinxbuilder
+eggs =
+    {{{ pkg_ns }}}.{{{ pkg_project }}}
+source = ${buildout:directory}/doc
+build = ${buildout:directory}/doc/_build
+outputs =
+    html
+
+[pylint]
+recipe = collective.recipe.template
+input = inline:
+        #!/bin/bash
+        find -L  ${buildout:develop}/{{{ pkg_ns }}}/ -type f -regex ".*\.py" | grep -v 'test\|__init__' | xargs bin/pylint $@
+output = ${buildout:bin-directory}/pylint
+mode = 755
