@@ -81,19 +81,18 @@ class Basic_NamespaceTest(TestCase):
 
         from ..hooks import basic_namespace_post_render
 
-        dummy = DummyConfigurator(variables = {'pkg_license': 'gpl'})
+        dummy = DummyConfigurator(variables = {'pkg_license': 'gpl',
+                                               'buildout_bootstrap': False})
         dummy.target_directory = self.target_dir
 
-        dummy.variables['buildout_bootstrap'] = False
         basic_namespace_post_render(dummy)
 
         self.assertFalse(os.path.exists('%s/%s' % (self.target_dir,
                                        'bootstrap.py')))
 
-        dummy = DummyConfigurator(variables = {'pkg_license': 'bsd'})
+        dummy = DummyConfigurator(variables = {'pkg_license': 'bsd',
+                                               'buildout_bootstrap': True})
         dummy.target_directory = self.target_dir
-        dummy.variables['buildout_bootstrap'] = True
-
         basic_namespace_post_render(dummy)
 
         self.assertTrue(os.path.exists('%s/%s' % (self.target_dir,
